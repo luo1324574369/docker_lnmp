@@ -16,6 +16,7 @@ services:
       - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
     depends_on:
       - php
+      - swoole
     restart: always
     networks:
       - lnmp-net
@@ -30,5 +31,16 @@ services:
       - /www/docker_lnmp_swoole/php/config:/usr/local/etc/php/
       - /www/docker_lnmp_swoole/php/logs:/usr/local/var/log
     restart: always
+    networks:
+      - lnmp-net
+  swoole:
+    image: "549658/docker-compose-swoole:swoole"
+    ports:
+      - "9501:9501"
+    volumes:
+      - /www/docker_lnmp_swoole/www:/var/www/html:rw
+    privileged: true
+    restart: always
+    command: php -v
     networks:
       - lnmp-net
