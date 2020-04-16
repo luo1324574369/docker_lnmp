@@ -34,11 +34,11 @@ services:
     networks:
       - lnmp-net
   swoole:
-    image: "549658/docker-compose-swoole:swoole"
+    image: "phpswoole/swoole"
     ports:
       - "9501:9501"
     volumes:
-      - /www/docker_lnmp_swoole/www:/var/www/html:rw
+      - /www/docker_lnmp_swoole/www:/var/www/:rw
     privileged: true
     restart: always
     command: php -v
