@@ -5,3 +5,6 @@
 **RUN** 执行命令并创建新的Image Layer，看起来就跟shell命令一样
 
 **WORKDIR** 指定工作目录，如果使用docker exec进入容器时，默认目录就是指定的工作目录，如/data
+
+
+制作镜像命令：docker build -f Dockerfile.swoole -t hwphp:7.4.2 .

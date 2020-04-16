@@ -22,7 +22,7 @@ services:
       - lnmp-net
   php:
     container_name: php
-    image: hwphp:7.4-fpm
+    image: hwphp:7.4.2
     volumes:
       - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
       - /www/docker_lnmp_swoole/php/php.ini:/usr/local/etc/php/php.ini
