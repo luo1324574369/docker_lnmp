@@ -7,4 +7,9 @@
 **WORKDIR** 指定工作目录，如果使用docker exec进入容器时，默认目录就是指定的工作目录，如/data
 
 
-制作镜像命令：docker build -f Dockerfile.swoole -t hwphp:7.4.2 .
+制作镜像命令：
+ 
+ docker build -f Dockerfile.swoole -t hwphp:7.4.2 .
+
+ docker build -f Dockerfile.swoole.cli -t phpswoole .
+
