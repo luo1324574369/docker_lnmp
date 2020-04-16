@@ -1,0 +1,35 @@
+version: '3'
+networks:
+  lnmp-net:
+    driver: bridge
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.16.1
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
+      - /www/docker_lnmp_swoole/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /www/docker_lnmp_swoole/nginx/conf.d:/etc/nginx/conf.d
+      - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
+    depends_on:
+      - mariadb
+      - redis
+      - php
+    restart: always
+    networks:
+      - lnmp-net
+  php:
+    container_name: php
+    image: hwphp:7.4-fpm    //自定义镜像，基于php7.4-fpm，支持Swoole和Redis
+    volumes:
+      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
+      - /www/docker_lnmp_swoole/php/php.ini:/usr/local/etc/php/php.ini
+      - /www/docker_lnmp_swoole/php/logs:/usr/local/var/log
+      - /www/docker_lnmp_swoole/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    restart: always
+    networks:
+      - lnmp-net
