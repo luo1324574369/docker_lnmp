@@ -21,7 +21,10 @@ services:
       - lnmp-net
   php:
     container_name: php
-    image: hwphp:7.4.2
+#    image: hwphp:7.4.2
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.swoole # 指定 Dockerfile
     volumes:
       - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
       - /www/docker_lnmp_swoole/php/config:/usr/local/etc/php/
