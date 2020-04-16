@@ -12,7 +12,6 @@ services:
       - 443:443
     volumes:
       - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
-      - /www/docker_lnmp_swoole/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /www/docker_lnmp_swoole/nginx/conf.d:/etc/nginx/conf.d
       - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
     depends_on:
