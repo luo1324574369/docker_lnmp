@@ -24,7 +24,7 @@ services:
     image: hwphp:7.4.2
     volumes:
       - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
-      - /www/docker_lnmp_swoole/php/php.ini:/usr/local/etc/php/php.ini
+      - /www/docker_lnmp_swoole/php/config:/usr/local/etc/php/
       - /www/docker_lnmp_swoole/php/logs:/usr/local/var/log
     restart: always
     networks:
