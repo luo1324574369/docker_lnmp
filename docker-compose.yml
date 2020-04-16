@@ -16,8 +16,6 @@ services:
       - /www/docker_lnmp_swoole/nginx/conf.d:/etc/nginx/conf.d
       - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
     depends_on:
-      - mariadb
-      - redis
       - php
     restart: always
     networks:
