@@ -25,9 +25,6 @@ services:
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
-    volumes:
-      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
-      - /www/docker_lnmp_swoole/php/logs:/usr/local/var/log
     restart: always
     networks:
       - lnmp-net
