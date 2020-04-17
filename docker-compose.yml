@@ -24,6 +24,10 @@ services:
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
+    ports:
+      - 9000:9000
+      - 9501:9501
+      - 8888:9501
     volumes:
         - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
     restart: always
