@@ -35,6 +35,7 @@ services:
   swoole:
     image: "twosee/swoole-coroutine"
     ports:
+      - "8888:9501"
       - "9501:9501"
     volumes:
       - /www/docker_lnmp_swoole/www/swoole:/app/src:rw
