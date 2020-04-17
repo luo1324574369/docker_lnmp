@@ -22,7 +22,6 @@ services:
       - lnmp-net
   php:
     container_name: php
-#    image: hwphp:7.4.2
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
@@ -34,16 +33,12 @@ services:
     networks:
       - lnmp-net
   swoole:
-#    image: "phpswoole/swoole"
-    build:
-      context: ./php/images # 指定上下文
-      dockerfile: Dockerfile.phpswoole # 指定 Dockerfile
+    image: "twosee/swoole-coroutine"
     ports:
       - "9501:9501"
     volumes:
-      - /www/docker_lnmp_swoole/www:/var/www/:rw
-    privileged: true
+      - /www/docker_lump_swoole/www/swoole:/app/src:rw
     restart: always
-    command: php -v
+    command: php /app/src/server.php start
     networks:
       - lnmp-net
