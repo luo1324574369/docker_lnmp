@@ -24,14 +24,19 @@ services:
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
-    ports:
-      - 9000:9000
-      - 9501:9501
-      - 8888:9501
     volumes:
-        - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
+      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
     restart: always
-    command:
-      php /usr/share/nginx/html/swoole/server.php
+    networks:
+      - lnmp-net
+  swoole:
+    image: "twosee/swoole-coroutine"
+    ports:
+      - "8888:9501"
+      - "9501:9501"
+    volumes:
+      - /www/docker_lnmp_swoole/www/swoole:/app/src:rw
+    restart: always
+    command: php /app/src/server.php start
     networks:
       - lnmp-net
