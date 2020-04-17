@@ -16,7 +16,6 @@ services:
       - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
     depends_on:
       - php
-      - swoole
     restart: always
     networks:
       - lnmp-net
@@ -26,16 +25,5 @@ services:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
     restart: always
-    networks:
-      - lnmp-net
-  swoole:
-    image: "twosee/swoole-coroutine"
-    ports:
-      - "8888:9501"
-      - "9501:9501"
-    volumes:
-      - /www/docker_lnmp_swoole/www/swoole:/app/src:rw
-    restart: always
-    command: php /app/src/server.php start
     networks:
       - lnmp-net
