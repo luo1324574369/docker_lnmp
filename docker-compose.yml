@@ -34,7 +34,10 @@ services:
     networks:
       - lnmp-net
   swoole:
-    image: "phpswoole/swoole"
+#    image: "phpswoole/swoole"
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.phpswoole # 指定 Dockerfile
     ports:
       - "9501:9501"
     volumes:
