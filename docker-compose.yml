@@ -39,6 +39,6 @@ services:
     volumes:
       - /www/docker_lump_swoole/www/swoole:/app/src:rw
     restart: always
-    command: php /app/src/server.php start
+    command: php --ri swoole
     networks:
       - lnmp-net
