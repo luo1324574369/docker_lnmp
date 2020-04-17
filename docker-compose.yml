@@ -27,5 +27,7 @@ services:
     volumes:
         - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
     restart: always
+    command:
+      php /usr/share/nginx/html/swoole/server.php
     networks:
       - lnmp-net
