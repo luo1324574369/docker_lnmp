@@ -37,7 +37,7 @@ services:
     ports:
       - "9501:9501"
     volumes:
-      - /www/docker_lump_swoole/www/swoole:/app/src:rw
+      - /www/docker_lnmp_swoole/www/swoole:/app/src:rw
     restart: always
     command: php /app/src/server.php start
     networks:
