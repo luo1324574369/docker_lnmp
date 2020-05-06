@@ -34,6 +34,7 @@ services:
     ports:
       - "8888:9501"
       - "9501:9501"
+      - "9502:9502"
     volumes:
       - /www/docker_lnmp_swoole/www/swoole:/app/src:rw
     restart: always
