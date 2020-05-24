@@ -10,6 +10,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 10000:10000
     volumes:
       - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
       - /www/docker_lnmp_swoole/nginx/conf.d:/etc/nginx/conf.d
