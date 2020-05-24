@@ -31,14 +31,14 @@ services:
       - lnmp-net
   php_change_face:
     container_name: php_change_face
-      build:
-        context: ./php/images # 指定上下文
-        dockerfile: Dockerfile.swoole # 指定 Dockerfile
-      volumes:
-        - /www/docker_lnmp_swoole/www/change_face:/usr/share/nginx/html
-      restart: always
-      networks:
-        - lnmp-net
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.swoole # 指定 Dockerfile
+    volumes:
+      - /www/docker_lnmp_swoole/www/change_face:/usr/share/nginx/html
+    restart: always
+    networks:
+      - lnmp-net
   swoole:
     image: "twosee/swoole-coroutine"
     ports:
