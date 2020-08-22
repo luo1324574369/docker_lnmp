@@ -21,6 +21,7 @@
 **environment**：设置环境变量， environment 的值可以覆盖 env_file 的值 (等同于 docker run -e 的作用
 
 
+
 **查看日志**
  docker logs --tail 50 --follow --timestamps dockerlnmpswoole_swoole_1
  
