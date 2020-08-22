@@ -18,7 +18,7 @@ services:
       - $PWD/nginx/conf.d:/etc/nginx/conf.d
       - $PWD/nginx/logs:/var/log/nginx
     depends_on:
-      - php74
+      - php56
     restart: always
     networks:
       - lnmp-net
@@ -29,16 +29,6 @@ services:
       dockerfile: Dockerfile.php56 # 指定 Dockerfile
     volumes:
       - $PWD/www/php56:/usr/share/nginx/html/php56
-    restart: always
-    networks:
-      - lnmp-net
-  php74:
-    container_name: php74
-    build:
-      context: ./php/images # 指定上下文
-      dockerfile: Dockerfile.swoole # 指定 Dockerfile
-    volumes:
-      - $PWD/www/php74:/usr/share/nginx/html/php74
     restart: always
     networks:
       - lnmp-net
