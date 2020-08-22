@@ -16,12 +16,12 @@ services:
       - $PWD/nginx/conf.d:/etc/nginx/conf.d
       - $PWD/nginx/logs:/var/log/nginx
     depends_on:
-      - php
+      - php74
     restart: always
     networks:
       - lnmp-net
-  php:
-    container_name: php
+  php74:
+    container_name: php74
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
