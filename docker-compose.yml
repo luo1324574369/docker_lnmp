@@ -12,9 +12,9 @@ services:
       - 443:443
       - 10000:10000
     volumes:
-      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
-      - /www/docker_lnmp_swoole/nginx/conf.d:/etc/nginx/conf.d
-      - /www/docker_lnmp_swoole/nginx/logs:/var/log/nginx
+      - $PWD/www:/usr/share/nginx/html
+      - $PWD/nginx/conf.d:/etc/nginx/conf.d
+      - $PWD/nginx/logs:/var/log/nginx
     depends_on:
       - php
     restart: always
@@ -26,7 +26,7 @@ services:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
     volumes:
-      - /www/docker_lnmp_swoole/www:/usr/share/nginx/html
+      - $PWD/www:/usr/share/nginx/html
     restart: always
     networks:
       - lnmp-net
@@ -37,7 +37,7 @@ services:
       - "9501:9501"
       - "9502:9502"
     volumes:
-      - /www/docker_lnmp_swoole/www/laravel_swoole/swoole/:/app/src:rw
+      - $PWD/www/swoole:/app/src:rw
     restart: always
     command: php /app/src/server.php start
     networks:
