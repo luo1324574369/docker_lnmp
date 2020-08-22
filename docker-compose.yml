@@ -9,6 +9,8 @@ services:
     image: nginx:1.16.1
     ports:
       - 80:80
+      - 8074:8074
+      - 8056:8056
       - 443:443
       - 10000:10000
     volumes:
@@ -20,26 +22,36 @@ services:
     restart: always
     networks:
       - lnmp-net
+  php56:
+    container_name: php56
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.php56 # 指定 Dockerfile
+    volumes:
+      - $PWD/www/php56:/usr/share/nginx/html/php56
+    restart: always
+    networks:
+      - lnmp-net
   php74:
     container_name: php74
     build:
       context: ./php/images # 指定上下文
       dockerfile: Dockerfile.swoole # 指定 Dockerfile
     volumes:
-      - $PWD/www:/usr/share/nginx/html
+      - $PWD/www/php74:/usr/share/nginx/html/php74
     restart: always
     networks:
       - lnmp-net
-  swoole:
-    image: "twosee/swoole-coroutine"
-    ports:
-      - "8888:9501"
-      - "9501:9501"
-      - "9502:9502"
-    volumes:
-      - $PWD/www/swoole:/app/src:rw
-    restart: always
-    command: php /app/src/server.php start
-    networks:
-      - lnmp-net
+#  swoole:
+#    image: "twosee/swoole-coroutine"
+#    ports:
+#      - "8888:9501"
+#      - "9501:9501"
+#      - "9502:9502"
+#    volumes:
+#      - $PWD/www/swoole:/app/src:rw
+#    restart: always
+#    command: php /app/src/server.php start
+#    networks:
+#      - lnmp-net
 
