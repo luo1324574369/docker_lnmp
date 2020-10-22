@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
         zip \
   && docker-php-ext-install zip
 
-# 安装 PECL 拓展，安装Redis，swoole
+# 安装 PECL 拓展，安装Redis
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
