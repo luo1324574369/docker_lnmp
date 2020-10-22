@@ -4,4 +4,21 @@ FROM arodax/php7.2-fpm
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# 更新安装依赖包和PHP核心拓展
+RUN apt-get update && apt-get install -y \
+        --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev curl \
+        && rm -r /var/lib/apt/lists/* \
+        && docker-php-ext-configure gd \
+        && docker-php-ext-install -j$(nproc) gd opcache pdo_mysql gettext sockets 
+
+#install some base extensions
+RUN apt-get update && apt-get install -y \
+        libzip-dev \
+        zip \
+  && docker-php-ext-install zip
+
+# 安装 PECL 拓展，安装Redis，swoole
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
 WORKDIR /usr/share/nginx/html/php72
