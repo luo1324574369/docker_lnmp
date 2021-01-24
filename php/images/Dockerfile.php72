@@ -19,6 +19,16 @@ RUN apt-get update && apt-get install -y \
 
 # 安装 PECL 拓展，安装Redis
 RUN pecl install redis \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis 
+
+# RUN pecl uninstall mongodb
+
+# mongodb 扩展下载 pecl本地安装 开启扩展
+RUN wget http://pecl.php.net/get/mongodb-1.7.0.tgz -O /tmp/mongodb17.tgz \
+    && pecl install /tmp/mongodb17.tgz \
+    && rm -rf /tmp/mongodb17.tgz \
+    && docker-php-ext-enable mongodb
+
+# RUN docker-php-ext-enable mongodb
 
 WORKDIR /usr/share/nginx/html/php72

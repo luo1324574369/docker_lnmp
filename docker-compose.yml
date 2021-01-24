@@ -18,7 +18,8 @@ services:
       - $PWD/nginx/conf.d:/etc/nginx/conf.d
       - $PWD/nginx/logs:/var/log/nginx
     depends_on:
-      - php56
+      - php72
+      - php70
     restart: always
     networks:
       - lnmp-net
@@ -32,6 +33,48 @@ services:
     restart: always
     networks:
       - lnmp-net
+  php70:
+    container_name: php70
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.php70 # 指定 Dockerfile
+    volumes:
+      - $PWD/www/php70:/usr/share/nginx/html/php70
+    restart: always
+    networks:
+      - lnmp-net
+  php71:
+    container_name: php71
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.php71 # 指定 Dockerfile
+    volumes:
+      - $PWD/www/php71:/usr/share/nginx/html/php71
+    restart: always
+    networks:
+      - lnmp-net
+  php72:
+    container_name: php72
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.php72 # 指定 Dockerfile
+    volumes:
+      - $PWD/www/php72:/usr/share/nginx/html/php72
+      - $PWD/php/config/php72/php/php.ini:/usr/local/etc/php/php.ini
+    restart: always
+    networks:
+      - lnmp-net
+  php74:
+    container_name: php74
+    build:
+      context: ./php/images # 指定上下文
+      dockerfile: Dockerfile.php74 # 指定 Dockerfile
+    volumes:
+      - $PWD/www/php74:/usr/share/nginx/html/php74
+    restart: always
+    networks:
+      - lnmp-net
+    
 #  swoole:
 #    image: "twosee/swoole-coroutine"
 #    ports:
